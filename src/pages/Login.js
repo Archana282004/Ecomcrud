@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 
 
 
-export default function Login() {
+export default function Login({setToken}) {
 
   const [form, setForm] = useState({
     email: "",
@@ -38,13 +38,14 @@ export default function Login() {
         if (userExists) {
          const generatingToken = uuidv4();
          localStorage.setItem("token", generatingToken);
-         console.log(generatingToken);
+         setToken(generatingToken)
+         debugger
          navigate("/product");
         } else {
           setError("Invalid email or password");
           console.log("not authenticated")
         }
-      } catch (error) {
+      } catch (error) {debugger
         setError("Something went wrong. Please try again later.");
         console.error(error);
       }

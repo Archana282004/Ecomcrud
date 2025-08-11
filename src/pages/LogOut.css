@@ -1,0 +1,76 @@
+/* Dark background overlay */
+.ModalBackGround {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* stays on top */
+}
+
+/* Modal container box */
+.ModalContainer {
+  width: 400px;
+  max-width: 90%;
+  min-height: 200px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Close button (top-right corner) */
+.ModalContainer > button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Title section */
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto; 
+  gap: 10px;
+}
+
+.footer button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+
+.footer button:first-child {
+  background-color: #ccc;
+}
+
+
+.footer button:last-child {
+  background-color: #f44336; 
+  color: white;
+}

@@ -11,6 +11,12 @@
       "email": "test@example.com",
       "password": "789789",
       "confirm_password": "789789"
+    },
+    {
+      "id": "9845452a-f03f-4b7a-a2ce-c7f56db67c36",
+      "email": "archana@example.com",
+      "password": "456456",
+      "confirm_password": "456456"
     }
   ],
   "products": [
@@ -54,6 +60,20 @@
       "taxRate": "4",
       "variant": "red",
       "stock": "4000",
+      "productImage": "C:\\fakepath\\download.jpeg"
+    },
+    {
+      "id": "3460",
+      "productName": " sample Product 4",
+      "category": "furniture",
+      "status": "Active",
+      "description": "hello",
+      "price": "78",
+      "comparePrice": "65",
+      "costPerItem": "45",
+      "taxRate": "5",
+      "variant": "red",
+      "stock": "2400",
       "productImage": "C:\\fakepath\\download.jpeg"
     }
   ]

@@ -9,30 +9,34 @@ import ProductList from "./pages/ProductList";
 import AddProduct from "./pages/AddProduct";
 import EditProduct from "./pages/EditProduct";
 import NoPage from "./pages/NoPage";
-function App() {
-   const [token, setToken] = useState('')
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setToken(token)
-  }, [])
+import LogOut from "./pages/LogOut";
+function App() {debugger
+   const [token, setToken] = useState(localStorage.getItem("token"))
+     const[openModal,setOpenModal]= useState(false)
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   setToken(token)
+  // }, [token])
 
   return (
     <BrowserRouter>
       <Routes>
         {token ? (
           <>
-            <Route path="product" element={<Home />}>
+            <Route path="product" element={<Home  setToken={setToken} />}>
               <Route index element={<ProductList />} />
               <Route path="add" element={<AddProduct />} />
               <Route path="edit" element={<EditProduct />} />
             </Route>
+            <Route path="logout" element={<LogOut />}/>
             <Route path="*" element={<Navigate to="/product" replace />} />
             </>
             ) :
             (
             <>
               <Route path="signup" element={<Signup />} />
-              <Route path="login" element={<Login />} />
+              <Route path="login" element={<Login setToken={setToken}  />} />
               <Route path="*" element={<Navigate to="/login" replace />} />
             </>
         )}
