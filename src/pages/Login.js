@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator"
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from 'react-redux';
+import { login } from '../store/reducers/auth';
 
 
 
 
-export default function Login({setToken}) {
-
+export default function Login() {
+  const dispatch = useDispatch()
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -28,7 +30,7 @@ export default function Login({setToken}) {
 
       try {
         const response = await fetch("http://localhost:3000/users");
-        
+
         const users = await response.json();
         const userExists = users.some(user =>
           user.email.trim() === form.email.trim() &&
@@ -36,18 +38,17 @@ export default function Login({setToken}) {
         );
 
         if (userExists) {
-         const generatingToken = uuidv4();
-         localStorage.setItem("token", generatingToken);
-         setToken(generatingToken)
-         debugger
-         navigate("/product");
+          const token = uuidv4();
+          dispatch(login(token));
+          navigate("/product");
         } else {
           setError("Invalid email or password");
           console.log("not authenticated")
         }
-      } catch (error) {debugger
+      } catch (error) {
+        debugger
         setError("Something went wrong. Please try again later.");
-        console.error(error);
+        console.log(error);
       }
 
     }
@@ -118,7 +119,7 @@ export default function Login({setToken}) {
                                 id="password"
                                 value={form.password}
                                 onChange={handleChange}
-                                //onBlur={handleBlur}
+                              //onBlur={handleBlur}
                               />
                               <p className='hello'>{simpleValidator.current.message("password", form.password, "required")}</p>
                             </div>

@@ -1,71 +1,62 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../assets/css/main.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../store/reducers/product";
 
 export default function ProductList() {
-  // Sample static data for display purposes only
-
-  const [listingProduct, setListingProduct] = useState([]);
+  const { products, loading, error } = useSelector((state) => state.product);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/products");
-        const data = await res.json();
-        setListingProduct(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchData();
-  }, []); 
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   const listRendering = (
-<React.Fragment>
-  {listingProduct.map((product) => (
-    <tr key={product.id}>
-      <td>
-        <label>{product.id}</label>
-      </td>
-      <td>
-        <div className="media align-items-center">
-          <div className="product_thumb">
-            <img
-              src={product.productImage || "placeholder.jpg"}
-              alt={product.productName || "Product"}
-            />
-          </div>
-          <div className="media-body product_des">
-            <h6 className="product_name">{product.productName}</h6>
-          </div>
-        </div>
-      </td>
-      <td className="text_primary">{product.category || "N/A"}</td>
-      <td>$ {product.price || "N/A"}</td>
-      <td>{product.stock || "N/A"}</td>
-      <td>{product.status || "N/A"}</td>
-      <td className="actions">
-        <div className="dropdown dropdown_wrapper">
-          <button
-            className="dropdown-toggle"
-            data-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACFSURBVEiJ7ZSxCYAwEEUfWmrhEilTuZMTGTdwB+dwB0FXsNHCiAFBIl4KSR78JnD//nHhICY00FtpafMSWIDNarZvYtSO+alaskHJkdqdoPApzD0brMAAVMAINMD0OmYUKKsgdFxLNtLmivs39Zokk07yBcOVvg3VJOiS/08614+kcx2OHQgqLpVdcUDeAAAAAElFTkSuQmCC"
-              alt="Dots"
-            />
-          </button>
-          <div className="dropdown-menu dropdown-menu-right">
-            <button className="dropdown-item">View Details</button>
-            <button className="dropdown-item">Delete</button>
-          </div>
-        </div>
-      </td>
-    </tr>
-  ))}
-</React.Fragment>
+    <React.Fragment>
+      {products.map((product) => (
+        <tr key={product.id}>
+          <td>
+            <label>{product.id}</label>
+          </td>
+          <td>
+            <div className="media align-items-center">
+              <div className="product_thumb">
+                <img
+                  src={product.productImage || "placeholder.jpg"}
+                  alt={product.productName || "Product"}
+                />
+              </div>
+              <div className="media-body product_des">
+                <h6 className="product_name">{product.productName}</h6>
+              </div>
+            </div>
+          </td>
+          <td className="text_primary">{product.category || "N/A"}</td>
+          <td>$ {product.price || "N/A"}</td>
+          <td>{product.stock || "N/A"}</td>
+          <td>{product.status || "N/A"}</td>
+          <td className="actions">
+            <div className="dropdown dropdown_wrapper">
+              <button
+                className="dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACFSURBVEiJ7ZSxCYAwEEUfWmrhEilTuZMTGTdwB+dwB0FXsNHCiAFBIl4KSR78JnD//nHhICY00FtpafMSWIDNarZvYtSO+alaskHJkdqdoPApzD0brMAAVMAINMD0OmYUKKsgdFxLNtLmivs39Zokk07yBcOVvg3VJOiS/08614+kcx2OHQgqLpVdcUDeAAAAAElFTkSuQmCC"
+                  alt="Dots"
+                />
+              </button>
+              <div className="dropdown-menu dropdown-menu-right">
+                <button className="dropdown-item">View Details</button>
+                <button className="dropdown-item">Delete</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      ))}
+    </React.Fragment>
 
   );
 

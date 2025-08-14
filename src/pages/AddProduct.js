@@ -1,7 +1,9 @@
 import React, { useState, useRef } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/main.css";
 import SimpleReactValidator from "simple-react-validator"
+import { useDispatch } from "react-redux";
+import { addProduct } from "../store/reducers/product";
 
 export default function AddProduct() {
   const [formData, setFormData] = useState({
@@ -19,6 +21,8 @@ export default function AddProduct() {
 
   })
   const [, forceUpdate] = useState({})
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const validator = useRef(
     new SimpleReactValidator({
       messages: {
@@ -28,32 +32,18 @@ export default function AddProduct() {
     }),
   )
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field, value) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
     }))
   }
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validator.current.allValid()) {
-      const newproduct = { ...formData };
-      fetch("http://localhost:3000/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newproduct)
-      })
-        .then(response => response.json())
-        .then(success => {
-          console.log("Success:", success)
-          navigate('/product')
-        })
-        .catch(error => {
-          console.error("Error:", error);
-        });
+      dispatch(addProduct(formData));
+      navigate("/product");
 
 
       setFormData({
@@ -140,7 +130,7 @@ export default function AddProduct() {
                     <label className="form-label" htmlFor="status">
                       Status <span className="mandatory">*</span>
                     </label>
-                    <select name="status" className="custom-select input_modify" id="status"value={formData.status} onChange={(e) => handleChange("status", e.target.value)}>
+                    <select name="status" className="custom-select input_modify" id="status" value={formData.status} onChange={(e) => handleChange("status", e.target.value)}>
                       <option value="">Select Status</option>
                       <option value="Active">Active</option>
                       <option value="Draft">Draft</option>

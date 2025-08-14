@@ -7,12 +7,6 @@
       "confirm_password": "okokok"
     },
     {
-      "id": "b4615c33-ca4a-4ea3-bc31-3e3173203e56",
-      "email": "test@example.com",
-      "password": "789789",
-      "confirm_password": "789789"
-    },
-    {
       "id": "9845452a-f03f-4b7a-a2ce-c7f56db67c36",
       "email": "archana@example.com",
       "password": "456456",
@@ -46,34 +40,6 @@
       "taxRate": "4",
       "variant": "red",
       "stock": "3000",
-      "productImage": "C:\\fakepath\\download.jpeg"
-    },
-    {
-      "id": "e67f",
-      "productName": " Sample Product 3 ",
-      "category": "instrument",
-      "status": "Draft",
-      "description": "Hello testing",
-      "price": "56",
-      "comparePrice": "65",
-      "costPerItem": "70",
-      "taxRate": "4",
-      "variant": "red",
-      "stock": "4000",
-      "productImage": "C:\\fakepath\\download.jpeg"
-    },
-    {
-      "id": "3460",
-      "productName": " sample Product 4",
-      "category": "furniture",
-      "status": "Active",
-      "description": "hello",
-      "price": "78",
-      "comparePrice": "65",
-      "costPerItem": "45",
-      "taxRate": "5",
-      "variant": "red",
-      "stock": "2400",
       "productImage": "C:\\fakepath\\download.jpeg"
     }
   ]
