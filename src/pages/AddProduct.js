@@ -42,27 +42,39 @@ export default function AddProduct() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validator.current.allValid()) {
-      dispatch(addProduct(formData));
-      navigate("/product");
+      try {
+        const response = await fetch("http://localhost:3000/products", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+        const data = await response.json();
+        dispatch(addProduct(data));
+        navigate("/product");
 
 
-      setFormData({
-        productName: " ",
-        category: " ",
-        status: "",
-        description: "",
-        price: "",
-        comparePrice: "",
-        costPerItem: "",
-        taxRate: "",
-        variant: "",
-        stock: "",
-        productImage: "",
-      })
+        setFormData({
+          productName: " ",
+          category: " ",
+          status: "",
+          description: "",
+          price: "",
+          comparePrice: "",
+          costPerItem: "",
+          taxRate: "",
+          variant: "",
+          stock: "",
+          productImage: "",
+        })
 
-      validator.current.hideMessages();
-      forceUpdate({})
-    } else {
+        validator.current.hideMessages();
+        forceUpdate({})
+      }
+      catch (error) {
+        console.error("Error adding product:", error);
+      }
+    }
+    else {
       validator.current.showMessages();
       forceUpdate({});
     }

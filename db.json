@@ -11,6 +11,12 @@
       "email": "archana@example.com",
       "password": "456456",
       "confirm_password": "456456"
+    },
+    {
+      "id": "f3714ffb-a121-42c8-9e8c-0a14a16295f6",
+      "email": "saicharan@example.con",
+      "password": "123123",
+      "confirm_password": "123123"
     }
   ],
   "products": [
@@ -40,6 +46,34 @@
       "taxRate": "4",
       "variant": "red",
       "stock": "3000",
+      "productImage": "C:\\fakepath\\download.jpeg"
+    },
+    {
+      "id": "5446",
+      "productName": " Smaple Product 2 ",
+      "category": "furniture",
+      "status": "Draft",
+      "description": "hello testing",
+      "price": "87",
+      "comparePrice": "78",
+      "costPerItem": "90",
+      "taxRate": "5",
+      "variant": "red",
+      "stock": "6000",
+      "productImage": "C:\\fakepath\\download.jpeg"
+    },
+    {
+      "id": "9e74",
+      "productName": " Smaple Product 2 ",
+      "category": "electronics",
+      "status": "Draft",
+      "description": "hello",
+      "price": "78",
+      "comparePrice": "89",
+      "costPerItem": "99",
+      "taxRate": "5",
+      "variant": "red",
+      "stock": "2000",
       "productImage": "C:\\fakepath\\download.jpeg"
     }
   ]

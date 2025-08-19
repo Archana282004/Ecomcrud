@@ -2,14 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../assets/css/main.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../store/reducers/product";
+import { setProducts } from "../store/reducers/product";
 
 export default function ProductList() {
-  const { products, loading, error } = useSelector((state) => state.product);
+  const { products } = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    const fetchData = async () => {
+      const response = await fetch("http://localhost:3000/products");
+      const data = await response.json();
+      dispatch(setProducts(data));
+    };
+
+    fetchData();
   }, [dispatch]);
 
   const listRendering = (
